@@ -1,22 +1,21 @@
-const router = require("express").Router();
-const axios = require("axios");
-const { Tipo } = require('../db.js');
+const axios = require('axios');
+const {Type} = require('../db')
+const {API_TYPE} = require('../../constants')
 
-const API_TYPE = 'https://pokeapi.co/api/v2/type';
-
-const getTypes = async function(){
-    const response = await axios.get(API_TYPE)
-    const data = await response.data;
-    const results = await data.results;
-
-    results.map( tipo => {
-        Tipo.create(
-            {
-                name: tipo.name
-            }
-        )
-    })
+async function getTypes(){
+    const responser = await axios.get(API_TYPE)
+    const results = responser.data.results;
+        
+    results.map( types => {
+        Type.findOrCreate(
+            { where:{
+                name: types.name
+                }, 
+            defaults: { 
+                name: types.name
+                }
+            })
+    });
 }
 
-//console.log(getTypes());
-module.exports = getTypes;
+module.exports={getTypes}

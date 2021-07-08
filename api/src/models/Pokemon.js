@@ -4,12 +4,9 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
-    idPokemon:{
+    id:{
       type:DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
-      autoIncrement: true,
-      unique: true
     },
     name: {
       type: DataTypes.STRING,
@@ -17,29 +14,15 @@ module.exports = (sequelize) => {
       unique: true
     },
     // type: {
-    //   type: DataTypes.Sequelize.ARRAY(Sequelize.TEXT),
+    //   type: DataTypes.VIRTUAL,
     //   allowNull:
     // },
+    //imagen tiene que ser virtual;
     health: { type: DataTypes.INTEGER },
     strength: { type:DataTypes.INTEGER },
     defense: { type: DataTypes.INTEGER },
     speed: { type: DataTypes.INTEGER },
     height: { type: DataTypes.INTEGER },
     weight: { type: DataTypes.INTEGER }
-  });
-
-  sequelize.define('tipo', {
-    idType: {
-      type:DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true,
-      unique: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    }
   });
 };
