@@ -66,15 +66,18 @@ router.get('/', async (req, res, next) => {
             const Pokemons2 = await dataPokemon2.map(info => info.data);
 
             const allData = Pokemons.concat(Pokemons2);//concat both lists of pokemons
-
+            
             const nameAndType = allData.map(pokemon => {
                 let poke = {
+                    id: pokemon.id,
                     imagen: pokemon.sprites.front_default,
                     nombre: pokemon.forms[0].name,
                     tipo: pokemon.types.map(types => types.type.name)
                 }
                 return poke;
             }); 
+
+            //nameAndType.includes([Pokemon])
             res.send(nameAndType);
         }
         catch (error){next(error)};
@@ -93,7 +96,12 @@ router.get('/:idPokemon', async (req, res) => {
     const {idPokemon} = req.params;
     if(idPokemon && idPokemon.length >= 7){ //if its from the DB (larger quantity of numbers in param)
         try{
-            const pokemonExists = await Pokemon.findOne({where: {id: idPokemon}})
+            const pokemonExists = await Pokemon.findOne({where: {id: idPokemon}});
+            // include: { model: models.Type,
+            //             where: {
+            //                 id: ParseInt({$col: 'Pokemon.type'})
+            //             }
+            // }})
             res.status(201).send(pokemonExists);
         }
         catch(error){
@@ -137,7 +145,7 @@ router.post('/', async (req,res, next) => {
     let id = uuidv4();
     //uuidNumbers creates an uuid numbers only
     var uuidNumbers = id.replace(/\D+/g, '').slice(0,9); //DataType.INTEGER only allows upto 9 digits
-    const { name, image, health, strength, defense, speed, height, weight } = req.body;
+    const { name, type, image, health, strength, defense, speed, height, weight } = req.body;
     const alreadyCreated = await Pokemon.findOne({where: {name: name}});
     if(!alreadyCreated){
         try{
@@ -152,10 +160,11 @@ router.post('/', async (req,res, next) => {
                 speed: speed,
                 height: height, 
                 weight: weight,
+                type: type
             });
+            //await newPokemon.setPokemon(req.body.type);
             res.status(201).send(newPokemon);
         }
-       
         catch(error){next(error)};
     }else{
         try{
