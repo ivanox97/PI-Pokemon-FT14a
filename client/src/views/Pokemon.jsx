@@ -1,42 +1,26 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { clearPage, getPokemon } from "../actions";
+import React from 'react';
+import { Link } from "react-router-dom";
 
-function Pokemon() {
-  const pokemon = useSelector((state) => state.pokemon);
-  const dispatch = useDispatch();
-  const { idPokemon } = useParams();
-  // cuando se monta la pagina hace el fetch
-  useEffect(() => {
-    dispatch(getPokemon(idPokemon));
-    return () => dispatch(clearPage())
-  }, [idPokemon, dispatch]);
-  console.log(pokemon)
-  return (
-    <div>
-      {pokemon ? (
-        <>
-          <hr />
-          <h3>{pokemon.name}</h3>
-            <div className="page-body">tipo: {pokemon.type}</div>
-            <img alt={pokemon.name} src={pokemon.image}/>
-            <div className="page-body">vida: {pokemon.health}</div>
-            <div className="page-body">fuerza :{pokemon.strength}</div>
-            <div className="page-body">defensa :{pokemon.defense}</div>
-            <div className="page-body">velocidad: {pokemon.speed}</div>
-            <div className="page-body">altura: {pokemon.height}</div>
-            <div className="page-body">peso: {pokemon.weight}</div>
-          <hr />
-        </>
-      ) : pokemon === undefined ? (
-        <div>Cargando...</div>
-      ) : (
-        <h1>Pagina no encontrada</h1>
-      )}
-    </div>
-  );
+function Pokemon(props) {
+    return (
+        <div key={props.pokeId}>
+            <h3>{props.pokeName}</h3>
+            <img alt={props.pokeId} src={props.pokeImage}/>
+            <h3>Type</h3>
+            {props.type.map( type => {
+                if(typeof type === 'object'){
+                  return <p key={type.id}>{type.name}</p>
+                } else {
+                    // let po = type
+                  return <p key={Math.random(0,1)*type.length + 111}>{type}</p>
+                }
+              })}
+                <Link to={`/pokemons/${props.pokeId}`}>
+                    <button type="button" className="bb">MORE INFO</button>
+                </Link>
+            <hr/>
+            </div>
+    );
 }
 
 export default Pokemon;

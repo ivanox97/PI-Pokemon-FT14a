@@ -13,15 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    type: { 
-      type: DataTypes.ENUM("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19", "20"),
-      //allowNull: false,
-    },
-    // type: {
-    //   type: DataTypes.VIRTUAL,
-    //   allowNull:
-    // },
-    //imagen tiene que ser virtual;
+    image: { type: DataTypes.STRING},
     health: { type: DataTypes.INTEGER },
     strength: { type:DataTypes.INTEGER },
     defense: { type: DataTypes.INTEGER },
