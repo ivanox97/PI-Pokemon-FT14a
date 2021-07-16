@@ -1,7 +1,6 @@
 import Home from "./views/Home"
 import { Route, Switch } from "react-router-dom"
-import Nav from "./components/Nav";
-import SearchBar from "./views/SearchBar";
+import Nav from "./components/navbar/Nav";
 import PokemonDetail from "./views/PokemonDetail";
 import CreatePokemon from "./views/CreatePokemon";
 import Beggining from "./views/Beggining";
@@ -10,7 +9,6 @@ function App() {
   return (
     <>
       <Route path="/" exact component={Beggining}/>
-      <Route path="/pokemons" component={SearchBar}/>
       <Route path="/pokemons" component={Nav} />
       <Route path="/pokemons" exact component={Home} />
         <Switch>

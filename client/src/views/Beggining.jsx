@@ -13,7 +13,7 @@ const Button = styled.button`
 export default function Beggining(){
     return(
         <div>
-            <Button><Link to="/pokemons">I CHOOSE YOU!</Link></Button>
+            <Link to="/pokemons"><Button>I CHOOSE YOU!</Button></Link>
         </div>
     )
 }

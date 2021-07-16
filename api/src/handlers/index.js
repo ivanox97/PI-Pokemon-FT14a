@@ -74,7 +74,7 @@ async function getApiPokemonsFullInfo(){
                 id: pokeData.id,
                 image: pokeData.sprites.front_default,
                 name: pokeData.name,
-                type: pokeData.types.map(types => types.type.name),
+                types: pokeData.types.map(types => types.type.name),
                 health: pokeData.stats[0].base_stat,
                 strength: pokeData.stats[1].base_stat,
                 defense: pokeData.stats[2].base_stat,
@@ -89,8 +89,8 @@ async function getApiPokemonsFullInfo(){
 }
 
 async function getAllPokemons() {
-    const pokeApi = await getApiPokemons();
-    const pokeDb = await getDBPokemons();
+    const pokeApi = await getApiPokemonsFullInfo();
+    const pokeDb = await getDBPokemonsFullInfo();
     const everyPokemons = pokeApi.concat(pokeDb);
     return everyPokemons;
 }

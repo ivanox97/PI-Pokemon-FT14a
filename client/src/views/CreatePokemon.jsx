@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPokemon, getPokemons } from "../actions";
 
@@ -6,7 +6,7 @@ import { createPokemon, getPokemons } from "../actions";
 function Add() {
   const dispatch = useDispatch()
 
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     name: "",
     image: "",
     health: 0,
