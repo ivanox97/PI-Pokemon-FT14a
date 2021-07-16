@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {getByName} from '../../actions';
+import {getByName, setPage} from '../../actions';
 import { useDispatch } from "react-redux";
 
 export default function SearchBar(){
@@ -12,12 +12,14 @@ export default function SearchBar(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setPage(0)
+        setName("")
         dispatch(getByName(name));
     }
 
     return (
     <form onSubmit={handleSubmit} className="d-flex">
-        <input value={name} onChange={handleChange} className="form-control me-2" type="search" placeholder="Who's that pokemon?" />
+        <input value={name} onChange={handleChange} className="form" type="search" placeholder="Who's that pokemon?" />
         <button className="button" type="submit"> Search </button>
     </form>
     )

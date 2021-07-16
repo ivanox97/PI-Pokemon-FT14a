@@ -34,7 +34,7 @@ export default function Home() {
       {page > 0? <button onClick={() => handlePage(-1)} type="button" className="b" >PREV</button> : 
       <button onClick={() => handlePage(-1)} type="button" className="b" disabled>PREV</button>}
 
-      {pokemons && page * 12 + 12< (pokemons.indexOf(pokemons[pokemons.length-1]))? 
+      {pokemons && page * 12 + 10 < (pokemons.indexOf(pokemons[pokemons.length-1]))? 
       <button onClick={() => handlePage(1)} type="button" className="b">NEXT</button> : 
       <button onClick={() => handlePage(1)} type="button" className="b" disabled>NEXT</button>}
     
