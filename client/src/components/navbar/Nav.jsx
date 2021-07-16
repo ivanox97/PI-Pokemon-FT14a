@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import FilterByType from "./FilterByType";
 import FilterByApiOrDb from "./FilterByAPI-DB"
 import FilterAlfabetical from "./FilterAlfabetical"
-import { getPokemons } from "../../actions";
+import { getPokemons, setPage } from "../../actions";
 import styled from 'styled-components'
 import { useDispatch } from "react-redux";
 
@@ -17,6 +17,7 @@ export default function Nav() {
   const dispatch = useDispatch()
 
   function handleOnClick(e) {
+    dispatch(setPage(0));
     dispatch(getPokemons());
   }
 

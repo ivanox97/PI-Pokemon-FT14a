@@ -1,13 +1,12 @@
 import { GET_POKEMONS, GET_POKEMON, GET_BY_NAME, 
   CREATE_POKEMON, FILTER_BY_TYPE, FILTER_API_DB,
-  FILTER_ALFABETICAL, FILTER_ASCENDANCY} from "./actions"
+  FILTER_ALFABETICAL, FILTER_ASCENDANCY, SET_PAGE} from "./actions"
 
 const initialState = {
-  pokemonsFiltered:[],
   pokemons: undefined,
-  pokemon: []
+  pokemon: [],
+  pages: 0,
 }
-console.log("estadpoo",initialState.pokemons)
 
 export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
@@ -43,6 +42,10 @@ export default function reducer(state = initialState, { type, payload }) {
     case FILTER_ASCENDANCY: return {
       ...state,
       pokemons: payload
+    }
+    case SET_PAGE: return {
+      ...state,
+      pages: payload
     }
     default: return state;
   }

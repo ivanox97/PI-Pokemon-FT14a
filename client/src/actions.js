@@ -8,11 +8,11 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_API_DB = "FILTER_API_DB";
 export const FILTER_ALFABETICAL = "FILTER_ALFABETICAL";
 export const FILTER_ASCENDANCY = "FILTER_ASCENDANCY";
+export const SET_PAGE = "SET_PAGE";
 
 export function getPokemons() {
   return (dispatch) => {
     axios.get('http://localhost:3001/pokemons').then((response) => {
-      console.log(response.data)
       dispatch({ type: GET_POKEMONS, payload: response.data });
     });
   }
@@ -86,7 +86,6 @@ export function filterByType(type) {
       const pokemonsFiltered = [];
       const pokemons = await axios.get('http://localhost:3001/pokemons');
       const pokeData = await pokemons.data;
-      console.log("pokeData", pokeData)
       pokeData.forEach(p => p.types.forEach(t =>
         {if(t === type || t.name === type){
           pokemonsFiltered.push(p)
@@ -96,7 +95,6 @@ export function filterByType(type) {
         payload: pokemonsFiltered})
     }}
     catch(error){
-      console.log(error)
       return dispatch({
         type: FILTER_BY_TYPE,
         payload: []
@@ -231,4 +229,13 @@ export function filterAscendancy(pokemons, ascendancy) {
 
 export function clearPage() {
   return { type: GET_POKEMON, payload: undefined }
+}
+
+export function setPage(n){
+ return async (dispatch) => {
+   return dispatch({
+     type: SET_PAGE,
+     payload: n
+   })
+ }
 }

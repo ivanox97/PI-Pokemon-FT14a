@@ -1,6 +1,6 @@
 import React , { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {filterByType} from "../../actions";
+import {filterByType, setPage} from "../../actions";
 import styled from 'styled-components';
 
 const Div = styled.div `
@@ -19,10 +19,10 @@ export default function FilterType() {
   }
   
   useEffect(()=> {
+    dispatch(setPage(0));
     dispatch(filterByType(type));
   },[dispatch,type])
 
-  console.log(type)
   return (
     <>
       <form>   

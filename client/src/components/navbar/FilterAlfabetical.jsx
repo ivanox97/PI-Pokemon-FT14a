@@ -1,6 +1,6 @@
 import React , { useState } from "react";
 import { useDispatch} from "react-redux";
-import {filterAlfabet} from "../../actions";
+import {filterAlfabet, setPage} from "../../actions";
 import styled from "styled-components";
 
 const Div = styled.div `
@@ -26,7 +26,9 @@ export default function FilterAlfabetical() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(setPage(0));
     dispatch(filterAlfabet(order,ascendancy));
+    setAscendancy(1)
   }
   // useEffect(()=>{
   //   dispatch(filterAlfabet(order,ascendancy));

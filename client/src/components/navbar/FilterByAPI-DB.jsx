@@ -1,6 +1,6 @@
 import React , { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {filterByApiOrDb} from "../../actions";
+import {filterByApiOrDb, setPage} from "../../actions";
 import styled from "styled-components";
 
 const Div = styled.div `
@@ -23,6 +23,7 @@ export default function FilterByApiOrDb() {
   // }
 
   useEffect(()=> {
+    dispatch(setPage(0));
     dispatch(filterByApiOrDb(apiOrDb));
   },[dispatch,apiOrDb])
   
