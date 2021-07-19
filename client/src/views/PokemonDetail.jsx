@@ -18,7 +18,7 @@ export default function PokemonDetail() {
   
   return (
     <div>
-      {pokemon.length > 0? (
+      {pokemon && pokemon.length > 0? (
         <>
           <hr />
           <h3>{pokemon[0].name}</h3>

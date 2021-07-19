@@ -45,7 +45,8 @@ export default function Home() {
       </Pager>
       {pokemons? pokemons.slice(page*12, page*12 + 12)
       .map(pokemon => {return <Pokemon key={pokemon.id} pokeName={pokemon.name} 
-      pokeId={pokemon.id} pokeImage={pokemon.image} types={pokemon.types}/>})
+      pokeId={pokemon.id} pokeImage={pokemon.image} types={pokemon.types} 
+      color={typeof pokemon.types[0] === 'object'? pokemon.types[0].name : pokemon.types[0]}/>})
       : <Loading/>
     }
     {Array.isArray(pokemons) && pokemons.length === 0?

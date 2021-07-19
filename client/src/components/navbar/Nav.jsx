@@ -7,47 +7,73 @@ import FilterAlphabetical from "./FilterAlphabetical"
 import { getPokemons, setPage } from "../../actions";
 import styled from 'styled-components'
 import { useDispatch } from "react-redux";
+import image from "../../images/klipartz.com.png";
 
 const Button = styled.button `
-position: relative;
-width: 25%;
-margin: 0;
-top: 10%;
-left: 30%;
+width: 100px;
+height: 60px;
+border-radius: 10px;
 `
 
 const Container = styled.div`
 margin-top: 0;
 margin: 0;
 width: 100%;
-height: 100px;
-background-color: red;
+height: 200px;
+background-color: #D4A000;
+border: 6px solid #0D5EAF;
+border-radius:10px;
 `
 
 const CreateContainer = styled.div `
-width: 33%;
-height: 50px;
+width: 237px;
+height: 130px;
 float: left;
+background-color: #D4A000;
+display: flex;
+align-items: center;
+justify-content: center;
 `
 const GoContainer = styled.div `
-width: 33%;
-height: 50px;
+width: 400px;
+height: 130px;
 float: right;
+background-color: #D4A000;
+display: flex;
+align-items: center;
+justify-content: flex-start;
 `
 const SearchContainer = styled.div `
 width: 33%;
-height: 50px;
-margin: 0 auto;
+height: 130px;
+bottom: 100px;
+background-color: #D4A000;
+display: flex;
+align-items: center;
+justify-content: center;
 `
 const Upper = styled.div `
+width: 20%;
+height: 130px;
+background-color: #D4A000;
+justify-content: center;
+align-items: center;
+float:left;
+overflow: hidden;
+`
+const Img = styled.img`
+position:  relative;
 width: 100%;
-height: 100px;
-background-color: green;
+height: auto;
 `
 const FilterContainer = styled.div `
+padding-top: 20px;
 width: 100%;
 height: 50px;
-background-color: blue;
+background-color: #0D5EAF;
+display: flex;
+align-items: center;
+justify-content: space-around;
 `
 export default function Nav() {
   const dispatch = useDispatch()
@@ -59,8 +85,10 @@ export default function Nav() {
 
   return (
     <>
-      <Upper>hola</Upper>
       <Container>
+        <Upper>
+        <Img src={image} alt="" />
+        </Upper>
         <CreateContainer>
             <Link to="/pokemons/add"><Button>Create a Pokemon!</Button></Link>
         </CreateContainer>

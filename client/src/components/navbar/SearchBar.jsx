@@ -1,7 +1,48 @@
-import {useState} from 'react';
-import {getByName, setPage} from '../../actions';
+import {useState} from "react";
+import {getByName, setPage} from "../../actions";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import {FaSearch} from "react-icons/fa"
 
+const Button = styled.button `
+color: #e84118;
+float: right;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background:  #2f3640;
+display:flex;
+justify-content: center;
+align-items: center;
+transition: 0.4s
+}
+`
+const Input = styled.input `
+border: none;
+background: none;
+outline: none;
+float: left;
+padding: 0;
+color: white;
+font-size: 16px;
+font-weight: bold;
+transition: 0.4s;
+line-height: 40px;
+width: 0px;
+`
+const Div = styled.div `
+background: #2f3640;
+height: 40px;
+border-radius: 40px;
+padding: 10px;
+&:hover ${Input}{
+    width: 240px;
+    padding: 0 6px;
+}
+&:hover ${Button}{
+    background: white;
+}
+`
 export default function SearchBar(){
     const [name, setName] = useState("");
     const dispatch = useDispatch();
@@ -19,8 +60,10 @@ export default function SearchBar(){
 
     return (
     <form onSubmit={handleSubmit}>
-        <input value={name} onChange={handleChange} type="search" placeholder="Who's that pokemon?" />
-        <button className="button" type="submit"> Search </button>
+        <Div>
+            <Input value={name} onChange={handleChange} type="search" placeholder="Who's that pokemon?" />
+            <Button className="button" type="submit"><FaSearch></FaSearch></Button>
+        </Div>
     </form>
     )
 
