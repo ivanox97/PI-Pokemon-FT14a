@@ -18,8 +18,8 @@ export default function SearchBar(){
     }
 
     return (
-    <form onSubmit={handleSubmit} className="d-flex">
-        <input value={name} onChange={handleChange} className="form" type="search" placeholder="Who's that pokemon?" />
+    <form onSubmit={handleSubmit}>
+        <input value={name} onChange={handleChange} type="search" placeholder="Who's that pokemon?" />
         <button className="button" type="submit"> Search </button>
     </form>
     )

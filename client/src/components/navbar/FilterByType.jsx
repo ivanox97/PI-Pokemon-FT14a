@@ -13,21 +13,27 @@ export default function FilterType() {
   const dispatch = useDispatch()
 
   const [type, setType] = useState({type: ""});
-
+  
+  function ResetSelect() {
+    document.getElementById("apiOrDb").selectedIndex = 0;
+    document.getElementById("filter").selectedIndex = 0;
+  }
+  
   function handleChange(e) {
       setType(e.target.value);
   }
-  
+ 
   useEffect(()=> {
     dispatch(setPage(0));
     dispatch(filterByType(type));
+    ResetSelect();
   },[dispatch,type])
 
   return (
     <>
       <form>   
         <Div>
-            <select onChange={handleChange} name="type" >
+            <select onChange={handleChange} id="type" >
                 <option defaultValue="">Filter by Type</option>
                 <option value="normal">normal</option>
                 <option value="fighting">fighting</option>

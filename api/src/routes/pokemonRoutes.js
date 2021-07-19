@@ -3,12 +3,6 @@ const { v4: uuidv4 } = require('uuid');
 const {Pokemon} = require("../db.js");
 const {getDBPokemonsFullInfo, getAllPokemons, getApiPokemonsFullInfo} = require("../handlers/index");
 
-/*GET /pokemons?name="...":
-Obtener el pokemon que coincida exactamente con 
-el nombre pasado como query parameter (Puede ser de pokeapi 
-    o creado por nosotros)
-Si no existe ningún pokemon mostrar un mensaje adecuado*/
-
 router.get('/', async (req, res, next) => {
     const {name} = req.query;
     if(name){
@@ -40,14 +34,6 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-/*[ ] GET /pokemons/{idPokemon}:
-Obtener el detalle de un pokemon en particular
-Debe traer solo los datos pedidos en la ruta 
-de detalle de pokemon
-Tener en cuenta que tiene que funcionar
-tanto para un id de un pokemon existente en pokeapi 
-o uno creado por ustedes*/
-
 router.get('/:idPokemon', async (req, res, next) => {
     const {idPokemon} = req.params;
     if(idPokemon && idPokemon.length >= 7){ //if its from the DB (larger quantity of numbers in param)
@@ -78,13 +64,6 @@ router.get('/:idPokemon', async (req, res, next) => {
         }
     }
 });
-
-
-
-/*POST /pokemons:
-Recibe los datos recolectados desde el formulario 
-controlado de la ruta de creación de pokemons por body
-Crea un pokemon en la base de datos*/
 
 router.post('/', async (req,res, next) => {
     let id = uuidv4();

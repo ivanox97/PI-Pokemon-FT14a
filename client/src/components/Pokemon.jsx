@@ -4,40 +4,105 @@ import styled from "styled-components";
 
 //tocar aca
 const Div2 = styled.div `
-  border-radius: 6px;
-  padding: 1em;
-  margin: 2em;
-  flex: 0 0 17.3vw;
-  height: 20%;
-  width: 20%;
+  padding: 10px;
+  margin: 30px;
+  height: 250px;
+  width: 250px;
   display: inline-block;
-  background: #fff;
-  transition: all 300ms;
+  border-radius: 6px;
+  background: yellow;
   color: #555;
   display: flex;
-  float: left;
+  float: right;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: 0 0 0 10px blue;
 `
 
+const ImageContainer = styled.div `
+position:relative;
+top: -10px;
+left: -50px;
+background-color: red;
+border-radius: 5px;
+width: 200px;
+height: 150px;
+`
 
+const IMG = styled.img `
+  position: relative;
+  top: 10px;
+  left: 50px;
+  heigth: 150px;
+  width: 150px;
+`
+const H3 = styled.h3 `
+margin: 0;
+`
+const H3Container = styled.div `
+position: relative;
+top: -10px;
+`
+const TypesContainer = styled.div`
+position: relative;
+height: 100px;
+width: 150px;
+background-color: lightblue;
+`
+
+const P = styled.p`
+margin:0;
+padding-top: 5px;
+text-align: center;
+
+`
+const P1 = styled.h4`
+margin:0;
+padding-top: 5px;
+text-align: center;
+`
+// display:table-cell;
+
+const ButtonContainer = styled.div `
+position: relative;
+bottom: 20px;
+left: 80px;
+height: 40px;
+width: 70px;
+background-color: lightblue;
+`
+
+const TypesMayorContainer = styled.div `
+position: relative;
+right: 60px;
+top: 20px;
+`
 function Pokemon(props) {
     return (
-        <Div2  key={props.pokeId}>
-            <h3>{props.pokeName}</h3>
-            <img alt={props.pokeId} src={props.pokeImage}/>
+        <Div2 key={props.pokeId}>
+            <ImageContainer>
+            <IMG alt={props.pokeId} src={props.pokeImage}/>
+            </ImageContainer>
+          <H3Container>
+            <H3>{props.pokeName.toUpperCase()}</H3>
+          </H3Container>
+          <TypesMayorContainer>
+            <TypesContainer>
               {props.types.map(type =>{ if(type.name){
-                 return <p key={Math.random(0,1)}>{type.name}</p>
+                 return <P key={Math.random(0,1)}>{type.name}</P>
               } else{
-                return <p key={Math.random(0,1)}>{type}</p>
+                return <P1 key={Math.random(0,1)}>{type}</P1>
               }
               })}
+            </TypesContainer>
+            </TypesMayorContainer>
+            <ButtonContainer>
             <Link to={`/pokemons/${props.pokeId}`}>
               <button type="button" className="bb">MORE INFO</button>
             </Link>
+            </ButtonContainer>
         </Div2>
     );
 }

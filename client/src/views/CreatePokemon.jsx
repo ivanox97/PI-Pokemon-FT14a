@@ -30,14 +30,19 @@ function Add() {
     if(values.type1 === values.type2){
       values.type2 = undefined;
     }
-    e.preventDefault()
+    e.preventDefault();
+
+    // pokemons.forEach(poke => {if(poke.name === values.name){
+    //   alert("That Pokemon name already exists :(")
+    // } else {
+    // }});
     dispatch(createPokemon(values));
     dispatch(getPokemons());
   }
 
   return (
     <>
-      <h3>Add a Pokemon</h3>
+      <h3>Create a Pokemon</h3>
       <hr />
       <form onSubmit={handleSubmit}>
         <div className="form-group">

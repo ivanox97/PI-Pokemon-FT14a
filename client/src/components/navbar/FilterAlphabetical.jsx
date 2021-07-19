@@ -10,15 +10,19 @@ const Div = styled.div `
   `
 
 
-export default function FilterAlfabetical() {
+export default function FilterAlphabetical() {
   const dispatch = useDispatch()
   const [order, setOrder] = useState({order: ""});
   var [ascendancy, setAscendancy] = useState(1);
 
+  function ResetSelect() {
+    document.getElementById("apiOrDb").selectedIndex = 0;
+    document.getElementById("type").selectedIndex = 0;
+  }
+
   function handleOnClick(e){
     setAscendancy(ascendancy+1);
     }
-
 
   function handleChange(e) {
     setOrder(e.target.value);
@@ -28,19 +32,16 @@ export default function FilterAlfabetical() {
     e.preventDefault();
     dispatch(setPage(0));
     dispatch(filterAlfabet(order,ascendancy));
-    setAscendancy(1)
+    ResetSelect();
+    setAscendancy(1);
   }
-  // useEffect(()=>{
-  //   dispatch(filterAlfabet(order,ascendancy));
-  // },[dispatch,order,ascendancy])
 
   return (
     <>
       <form onSubmit={handleSubmit}>   
-        <Div className="checkbox-group">
-          <h3>BY ALFABETICAL/STRENGTH:</h3>
-            <select onChange={handleChange} name="order" >
-                <option defaultValue=""></option>
+        <Div>
+            <select onChange={handleChange} id="filter">
+                <option defaultValue="">ALPHABETICAL/STRENGTH:</option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
                 <option value="STRENGTH">STRENGTH</option>

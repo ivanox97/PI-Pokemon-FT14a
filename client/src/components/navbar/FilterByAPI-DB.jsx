@@ -12,30 +12,31 @@ const Div = styled.div `
 export default function FilterByApiOrDb() {
   const dispatch = useDispatch()
   const [apiOrDb, setApiOrDb] = useState({apiOrDb: ""});
+  
+  function  ResetSelect() {
+    document.getElementById("filter").selectedIndex = 0;
+    document.getElementById("type").selectedIndex = 0;
+  }
 
   function handleChange(e) {
     setApiOrDb(e.target.value);
   }
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   dispatch(filterByApiOrDb(apiOrDb));
-  // }
-
   useEffect(()=> {
     dispatch(setPage(0));
     dispatch(filterByApiOrDb(apiOrDb));
+    ResetSelect();
   },[dispatch,apiOrDb])
+
   
   return (
     <>
       <form>   
         <Div className="checkbox-group">
-          <h3>BY API or DB:</h3>
-            <select onChange={handleChange} name="ApiOrDb" >
-                <option defaultValue=""></option>
+            <select onChange={handleChange} id="apiOrDb" >
+                <option defaultValue="">OLD/NEW:</option>
                 <option value="API">Old Pokemons</option>
-                <option value="DB">Created Pokemons</option>
+                <option value="DB">New Pokemons</option>
             </select>
         </Div>
       </form>
