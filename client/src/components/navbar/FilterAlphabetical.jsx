@@ -19,6 +19,7 @@ export default function FilterAlphabetical() {
 
   function handleChange(e) {
     setOrder(e.target.value);
+    setAscendancy(1);
   }
 
   function handleSubmit(e) {
@@ -26,7 +27,7 @@ export default function FilterAlphabetical() {
     dispatch(setPage(0));
     dispatch(filterAlfabet(order,ascendancy));
     ResetSelect();
-    setAscendancy(1);
+    
   }
 
   return (
@@ -62,8 +63,9 @@ const Div = styled.div `
   width: 200px;
   height: 25px;
   cursor: pointer;
+  border-radius: 10px;
   &:hover{
-    background-color: transparent;
+    background-color:  #464646;
     color: white;
   }
   `

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPokemon } from "../../actions";
 import NotFound from "../../components/extras/NotFound";
+import Loading from "../../components/extras/Loading";
 import {Container, PokeBox, Title, ImageContainer, Img, Type, TypeContainer,
    InfoContainer, Info, StatsContainer, MiddleContainer} from "./pokemonDetStyles";
 
@@ -13,7 +14,6 @@ export default function PokemonDetail() {
   const dispatch = useDispatch();
   const { idPokemon } = useParams();
 
-  
   useEffect(() => {
     dispatch(getPokemon(idPokemon));
     window.scrollTo(0, 0);
@@ -52,7 +52,7 @@ export default function PokemonDetail() {
               </StatsContainer>
             </MiddleContainer>
         </PokeBox>
-      ) : (<NotFound/>)}
+      ) : pokemon === undefined? <Loading/> : <NotFound/>}
     </Container>
   );
 }

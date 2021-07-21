@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Div = styled.div `
     width: 70px;
     height: 70px;
+    margin: 0 auto;
     border: 10px solid #C04C4B;
     border-top: 10px solid #464646;
     border-radius: 50%;

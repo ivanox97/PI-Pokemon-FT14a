@@ -7,15 +7,15 @@ margin-top: 0;
 margin: 0;
 width: calc(100%- 20px);
 height: 200px;
-background-color: #D4A000;
-border: 6px solid #0D5EAF;
+background-color: #C04C4B;
+border: 6px solid #464646;
 `;
 
 export const GoContainer = styled.div `
 width: 400px;
 height: 130px;
 float: right;
-background-color: #D4A000;
+background-color: #C04C4B;
 display: flex;
 align-items: center;
 justify-content: flex-start;
@@ -25,7 +25,7 @@ export const SearchContainer = styled.div `
 width: 32%;
 height: 130px;
 bottom: 100px;
-background-color: D4A000;
+background-color: #C04C4B;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -34,7 +34,7 @@ justify-content: center;
 export const ImgContainer = styled.div `
 width: 20%;
 height: 130px;
-background-color: #D4A000;
+background-color: #C04C4B;
 justify-content: center;
 align-items: center;
 float:left;
@@ -51,7 +51,7 @@ export const FilterContainer = styled.div `
 padding-top: 20px;
 width: 100%;
 height: 50px;
-background-color: D4A000;
+background-color: #C04C4B;
 display: flex;
 align-items: center;
 justify-content: space-around;
@@ -66,11 +66,11 @@ text-align: center;
 display:flex;
 justify-content: center;
 align-items: center;
-background-color: #2f3640;
+background-color: #464646;
 transition: 0.5s;
 `;
 
-export const Input = styled.input `
+export const Input1 = styled.input `
 border: none;
 background: none;
 outline: none;
@@ -84,7 +84,6 @@ width: 0px;
 `;
 
 export const Div1= styled.div`
-background: #D4A000;
 height:60px;
 width:60px;
 border-radius: 40px;
@@ -93,11 +92,11 @@ border-radius: 40px;
   display:flex;
   justify-content: flex-end;
 }
-&:hover ${Input}{
+&:hover ${Input1}{
     width: 60px;
 }
 &:hover ${Button}{
-    background: white;
+    background: #34397D;
 }
 `;
 
@@ -105,8 +104,44 @@ export const CreateContainer = styled.div `
 width: 230px;
 height: 130px;
 float: left;
-background-color: #D4A000;
+background-color: #C04C4B;
 display: flex;
 align-items: center;
 justify-content: center;
+`;
+
+export const Input2 = styled.input `
+border: none;
+background: none;
+outline: none;
+float: flex;
+padding: 0;
+color: white;
+font-size: 16px;
+font-weight: bold;
+line-height: 40px;
+width: 0px;
+position: relative;
+left: 160px
+`;
+
+export const Div2= styled.div`
+background: none;
+height:60px;
+width:60px;
+border-radius: 40px;
+&:hover{
+  width: 150px;
+  display:flex;
+  justify-content: flex-end;
+  text-align: left;
+}
+&:hover ${Input2}{
+    width: 180px;
+}
+&:hover ${Button}{
+  position: relative;
+  right: 90px;
+  background: #34397D;
+}
 `;

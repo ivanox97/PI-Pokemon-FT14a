@@ -4,7 +4,7 @@ import { GET_POKEMONS, GET_POKEMON, GET_BY_NAME,
 
 const initialState = {
   pokemons: undefined,
-  pokemon: [],
+  pokemon: undefined,
   pages: 0,
 }
 

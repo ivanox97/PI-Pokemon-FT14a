@@ -18,16 +18,16 @@ export default function FilterByApiOrDb() {
   }
 
   useEffect(()=> {
-    dispatch(setPage(0));
     dispatch(filterByApiOrDb(apiOrDb));
+    dispatch(setPage(0));
     ResetSelect();
-  },[dispatch,apiOrDb])
+  },[dispatch, apiOrDb])
 
   
   return (
     <>
       <form>   
-        <Div className="checkbox-group">
+        <Div>
             <Select onChange={handleChange} id="apiOrDb" >
                 <Option defaultValue="">OLD/NEW:</Option>
                 <Option value="API">Old Pokemons</Option>
@@ -55,8 +55,9 @@ text-aling: center;
 width: 130px;
 height: 25px;
 cursor: pointer;
+border-radius: 10px;
 &:hover{
-  background-color: transparent;
+  background-color:  #464646;
   color: white;
 }
 `;

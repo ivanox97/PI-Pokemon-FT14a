@@ -26,7 +26,7 @@ export function getPokemon(idPokemon) {
       .catch(error => {
         if (error.response?.status) {
           if (error.response.status === 404) {
-            return dispatch({ type: GET_POKEMONS, payload: [] })
+            return dispatch({ type: GET_POKEMON, payload: [] })
           }
         }
         alert("Ups!!! 😥")
@@ -35,11 +35,9 @@ export function getPokemon(idPokemon) {
 }
 
 export function getByName(name) {
-  
   return async (dispatch)=>{
       try {
-        console.log("hola")
-          const searchByName = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+          const searchByName = await axios.get(`http://localhost:3001/pokemons?name=${name.toLowerCase()}`)
           if(searchByName){
             const pokemonDetails = searchByName.data;
               return dispatch({
@@ -101,32 +99,33 @@ export function filterByType(type) {
 
 export function filterByApiOrDb(choice){
   return async (dispatch) => {
-    try {const pokemons = await axios.get('http://localhost:3001/pokemons');
-    if(choice === "API"){
-      const pokemonsApi = [];
-      pokemons.data.forEach(poke => {if(poke.id.toString().length <= 2){
-        pokemonsApi.push(poke);
-      }})
-      return dispatch({
-        type: FILTER_API_DB,
-        payload: pokemonsApi
+    try {
+      const pokemons = await axios.get('http://localhost:3001/pokemons');
+      if(choice === "API"){
+        const pokemonsApi = [];
+        pokemons.data.forEach(poke => {if(poke.id.toString().length <= 2){
+          pokemonsApi.push(poke);
+        }})
+        return dispatch({
+          type: FILTER_API_DB,
+          payload: pokemonsApi
+        })
+      } else {
+        const pokemonsDb = [];
+        pokemons.data.forEach(poke => {if(poke.id.toString().length > 2){
+          pokemonsDb.push(poke);
+        }})
+        return dispatch({
+          type: FILTER_API_DB,
+          payload: pokemonsDb
+        })}
+      }
+      catch(error){
+        return dispatch({
+          type: FILTER_API_DB,
+          payload: []
       })
-    } else {
-      const pokemonsDb = [];
-      pokemons.data.forEach(poke => {if(poke.id.toString().length > 2){
-        pokemonsDb.push(poke);
-      }})
-      return dispatch({
-        type: FILTER_API_DB,
-        payload: pokemonsDb
-      })}
-    }
-    catch(error){
-      return dispatch({
-        type: FILTER_API_DB,
-        payload: []
-    })
-    }
+      }
   }
 }
 

@@ -23,7 +23,7 @@ export default function SearchBar(){
     <form onSubmit={handleSubmit}>
         <Div>
             <Input value={name} onChange={handleChange} type="search" placeholder="Who's that pokemon?" />
-            <Button className="button" type="submit"><FaSearch></FaSearch></Button>
+            <Button className="button" type="submit"><FaSearch color="#F0DBA5"/></Button>
         </Div>
     </form>
     )
@@ -67,6 +67,6 @@ padding: 10px;
     padding: 0 6px;
 }
 &:hover ${Button}{
-    background: white;
+    background: #34397D;
 }
 `;

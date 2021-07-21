@@ -29,7 +29,7 @@ export default function FilterType() {
       <form>   
         <Div>
             <Select onChange={handleChange} id="type" >
-                <Option defaultValue="">Filter by Type</Option>
+                <Option defaultValue="">Type</Option>
                 <Option value="normal">normal</Option>
                 <Option value="fighting">fighting</Option>
                 <Option value="flying">flying</Option>
@@ -73,8 +73,9 @@ text-aling: center;
 width: 130px;
 height: 25px;
 cursor: pointer;
+border-radius: 10px;
 &:hover{
-  background-color: transparent;
+  background-color:  #464646;
   color: white;
 }
 `;
