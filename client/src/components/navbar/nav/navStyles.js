@@ -107,7 +107,7 @@ float: left;
 background-color: #C04C4B;
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: flex-end;
 `;
 
 export const Input2 = styled.input `

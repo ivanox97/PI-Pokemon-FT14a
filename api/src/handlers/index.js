@@ -27,39 +27,6 @@ async function getDBPokemonsFullInfo(){
             )
 }
 
-async function getDBPokemons(){
-    const dbPokes = await getDBPokemonsFullInfo();
-    const pokes =  await Promise.all(dbPokes.map(pokemon => {
-        return {
-            id: pokemon.id,
-            name: pokemon.name,
-            image: pokemon.image,
-            type: pokemon.types,
-        }
-    }))
-    return pokes;
-}
-
-async function getApiPokemons(){
-    const Url = await axios.get(API); //brings the FIRST 20 pokemons from the api
-    const UrlNext = await axios.get(Url.data.next); //brings the LAST 20 pokemons from the api
-    const resultsPokemon = Url.data.results.concat(UrlNext.data.results);
-    
-    const Pokemons =  await Promise.all(
-        resultsPokemon.map(async (pokemon) => {
-            const pokeInfo = await axios.get(pokemon.url);
-            const pokeData = pokeInfo.data;
-            let poke= {
-                id: pokeData.id,
-                image: pokeData.sprites.front_default,
-                name: pokeData.name,
-                type: pokeData.types.map(types => types.type.name)
-            }
-            return poke;
-        })
-        ); 
-    return Pokemons;
-}
 
 async function getApiPokemonsFullInfo(){
     const Url = await axios.get(API); //brings the FIRST 20 pokemons from the api
@@ -95,4 +62,4 @@ async function getAllPokemons() {
     return everyPokemons;
 }
 
-module.exports={getTypes, getDBPokemonsFullInfo, getApiPokemons, getAllPokemons, getApiPokemonsFullInfo, getDBPokemons}
+module.exports={getTypes, getDBPokemonsFullInfo, getAllPokemons, getApiPokemonsFullInfo}

@@ -5,7 +5,6 @@ import Pokemon from "../../components/pokemon/Pokemon"
 import Loading from "../../components/extras/Loading";
 import NotFound from "../../components/extras/NotFound";
 import {Div, Pager, Button} from "./homeStyles";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 
 export default function Home() {
@@ -30,12 +29,12 @@ export default function Home() {
   return (
     <>
       <Pager>
-        {page > 0 && pokemons !== undefined? <Button onClick={() => handlePage(-1)} type="button"><GrFormPrevious size="25px"/></Button> : 
-        <Button onClick={() => handlePage(-1)} type="button" disabled><GrFormPrevious size="25px"/></Button>}
+        {page > 0 && pokemons !== undefined? <Button onClick={() => handlePage(-1)} type="button">Prev</Button> : 
+        <Button onClick={() => handlePage(-1)} type="button" disabled>Prev</Button>}
 
         {pokemons && page * 12 + 10 < (pokemons.indexOf(pokemons[pokemons.length-1]))? 
-        <Button onClick={() => handlePage(1)} type="button"><GrFormNext size="25px"/></Button> : 
-        <Button onClick={() => handlePage(1)} type="button" disabled><GrFormNext size="25px"/></Button>}
+        <Button onClick={() => handlePage(1)} type="button">Next</Button> : 
+        <Button onClick={() => handlePage(1)} type="button" disabled>Next</Button>}
       </Pager>
       <Div>
         {pokemons? pokemons.slice(page*12, page*12 + 12)

@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
                     if(pokeName.length === 0){
                         return res.status(404).send("That pokemon does not exists.")
                     }
-                    if(pokeName.length>0){
+                    if(pokeName.length > 0){
                         return res.status(201).send(pokeName);
                     }
             } 

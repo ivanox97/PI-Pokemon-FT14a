@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON = "GET_POKEMON";
 export const GET_BY_NAME = "GET_BY_NAME";
@@ -11,26 +12,33 @@ export const FILTER_ASCENDANCY = "FILTER_ASCENDANCY";
 export const SET_PAGE = "SET_PAGE";
 
 export function getPokemons() {
-  return (dispatch) => {
-    axios.get('http://localhost:3001/pokemons').then((response) => {
-      dispatch({ type: GET_POKEMONS, payload: response.data });
-    });
+  return async (dispatch) => {
+    try{
+      const response = await axios.get('http://localhost:3001/pokemons');
+      const data = response.data;
+      return dispatch({type: GET_POKEMONS, payload: data})
+    }
+    catch(error){
+      return dispatch({type: GET_POKEMONS, payload: []})
+    }
   }
 }
 export function getPokemon(idPokemon) {
-  return (dispatch) => {
-    axios.get(`http://localhost:3001/pokemons/${idPokemon}`)
-      .then((response) => {
-        dispatch({ type: GET_POKEMON, payload: response.data })
-      })
-      .catch(error => {
-        if (error.response?.status) {
-          if (error.response.status === 404) {
-            return dispatch({ type: GET_POKEMON, payload: [] })
-          }
+  return async (dispatch) => {
+    try{
+      const pokemon = await axios.get(`http://localhost:3001/pokemons/${idPokemon}`);
+      const data = pokemon.data;
+      return dispatch({type: GET_POKEMON, payload: data})
+    }
+    catch(error){
+      if(error.response?.status){
+        if(error.response.status === 404){
+          return dispatch({type: GET_POKEMON, payload: []})
         }
-        alert("Ups!!! 😥")
-      })
+      } else {
+        alert("Upss!!!")
+      }
+    }
   }
 }
 
