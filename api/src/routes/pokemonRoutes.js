@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
         } 
         else{//get the 40 pokemons from both apis and the created pokemons in the db
             const allPokemons = await getAllPokemons();
-            res.send(allPokemons);
+            return res.send(allPokemons);
         }
     }
     catch (error){next(error)};
@@ -72,9 +72,11 @@ router.post('/', async (req,res, next) => {
     //uuidNumbers creates an uuid numbers only
     var uuidNumbers = id.replace(/\D+/g, '').slice(0,9); //DataType.INTEGER only allows upto 9 digits
     const { name, type1, type2, image, health, strength, defense, speed, height, weight } = req.body;
+    const allPokemons = await getApiPokemonsFullInfo();
     const alreadyCreated = await Pokemon.findOne({where: {name: name}});
-    if(!alreadyCreated){
-        try{
+    const alreadyExists =  await allPokemons.filter(poke => poke.name === name);
+    try{
+        if(!alreadyCreated && alreadyExists.length === 0){
             const newPokemon = await Pokemon.create({
                 id: uuidNumbers,
                 image: image,
@@ -90,15 +92,13 @@ router.post('/', async (req,res, next) => {
             if(type2){
                 newPokemon.setTypes(type2);
             }
-            res.status(201).send(newPokemon);
+            return res.status(201).send(newPokemon);
         }
-        catch(error){next(error)};
-    }else{
-        try{
-            res.status(404).send("THIS POKEMON ALREADY EXISTS")
+        else{
+            return res.status(404).send("THIS POKEMON ALREADY EXISTS")
         }
-        catch(error){next(error)};
     }
+    catch(error){next(error)};
 });
 
 module.exports = router;

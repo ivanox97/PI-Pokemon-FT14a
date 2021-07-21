@@ -1,6 +1,6 @@
 import React , { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPokemon, getPokemons } from "../../actions";
+import { createPokemon, getPokemons, noCreate } from "../../actions";
 import {Body, Container, Title, UserDetail, InputBox, Details, Input, ButtonContainer, Button
   , SelectBox, SelectBox2, Select, Option, DetailsType1, DetailsType2 } from "./createStyles";
 
@@ -34,14 +34,18 @@ export default function Add() {
       values.type2 = undefined;
     }
     e.preventDefault();
-
-    pokemons.forEach(poke => {if(poke.name === values.name){
-      alert("That Pokemon name already exists :(")
-    }});
+    console.log(pokemons);
+    const array = pokemons.filter(poke => poke.name.toLowerCase() === values.name.toLowerCase());
+    if(array.length === 0){
+      dispatch(createPokemon(values));
+      dispatch(getPokemons());
+      return alert("Pokemon create successfully!");
+    } else {
+      dispatch(getPokemons());
+      return alert("A pokemon with that name already exists!");
+    }
+  };
   
-    dispatch(createPokemon(values));
-    dispatch(getPokemons());
-  }
 
   return (
     <Body>

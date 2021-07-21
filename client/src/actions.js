@@ -45,12 +45,13 @@ export function getPokemon(idPokemon) {
 export function getByName(name) {
   return async (dispatch)=>{
       try {
-          const searchByName = await axios.get(`http://localhost:3001/pokemons?name=${name.toLowerCase()}`)
-          if(searchByName){
-            const pokemonDetails = searchByName.data;
+          const pokemons = await axios.get(`http://localhost:3001/pokemons`);
+          const data = pokemons.data;
+          const searchByName = data.filter(p => p.name.includes(name.toLowerCase()))
+          if(searchByName.length > 0){
               return dispatch({
                 type: GET_BY_NAME,
-                payload: pokemonDetails
+                payload: searchByName
             })
           }
       } catch (error) {
@@ -229,6 +230,14 @@ export function filterAscendancy(pokemons, ascendancy) {
   }
 }
 
+
+export function noCreate(){
+  return async (dispatch) => {
+    return dispatch({
+      type: CREATE_POKEMON,
+      payload: []
+  })}
+}
 export function setPage(n){
  return async (dispatch) => {
    return dispatch({

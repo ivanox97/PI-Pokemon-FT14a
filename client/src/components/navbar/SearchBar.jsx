@@ -11,7 +11,7 @@ export default function SearchBar(){
     const handleChange = (e) => {
         setName(e.target.value)
     }    
-
+    console.log(name)
     const handleSubmit = (e) => {
         e.preventDefault();
         setPage(0)

@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar";
 import FilterByType from "../FilterByType";
 import FilterByApiOrDb from "../FilterByAPI-DB"
 import FilterAlphabetical from "../FilterAlphabetical"
-import { getPokemons, setPage } from "../../../actions";
+import { getPokemons, setPage} from "../../../actions";
 import { useDispatch } from "react-redux";
 import image from "../../../images/logo.png";
 import {MdCreate} from "react-icons/md";
