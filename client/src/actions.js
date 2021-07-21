@@ -26,7 +26,7 @@ export function getPokemon(idPokemon) {
       .catch(error => {
         if (error.response?.status) {
           if (error.response.status === 404) {
-            return dispatch({ type: GET_POKEMON, payload: null })
+            return dispatch({ type: GET_POKEMONS, payload: [] })
           }
         }
         alert("Ups!!! 😥")
@@ -35,9 +35,10 @@ export function getPokemon(idPokemon) {
 }
 
 export function getByName(name) {
-  //let nameToLower = name.toLowerCase();
+  
   return async (dispatch)=>{
       try {
+        console.log("hola")
           const searchByName = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
           if(searchByName){
             const pokemonDetails = searchByName.data;
@@ -46,13 +47,7 @@ export function getByName(name) {
                 payload: pokemonDetails
             })
           }
-          else{
-            alert("No se encontro pokemon con este nombre");
-          }
       } catch (error) {
-          if(error.response?.status===404 ){
-              alert("No se encontro pokemon con este nombre");
-          }
           return dispatch({
               type: GET_BY_NAME,
               payload: []
@@ -63,8 +58,9 @@ export function getByName(name) {
 
 export function createPokemon(values) {
   return async (dispatch) => {
-    try{const create = await axios.post('http://localhost:3001/pokemons', values)
-    const createdData = create.data;
+    try{
+      const create = await axios.post('http://localhost:3001/pokemons', values)
+      const createdData = create.data;
       return dispatch({
         type: CREATE_POKEMON, 
         payload: createdData
@@ -224,11 +220,6 @@ export function filterAscendancy(pokemons, ascendancy) {
     })
     }
   }
-}
-
-
-export function clearPage() {
-  return { type: GET_POKEMON, payload: undefined }
 }
 
 export function setPage(n){

@@ -1,11 +1,11 @@
-import Home from "./views/Home"
 import { Route, Switch } from "react-router-dom"
-import Nav from "./components/navbar/Nav";
-import PokemonDetail from "./views/PokemonDetail";
-import CreatePokemon from "./views/CreatePokemon";
-import Beggining from "./views/Beggining";
+import Home from "./views/home/Home"
+import Nav from "./components/navbar/nav/Nav";
+import PokemonDetail from "./views/pokemonDetail/PokemonDetail";
+import CreatePokemon from "./views/create/CreatePokemon.jsx";
+import Beggining from "./views/beggining/Beggining.jsx";
 
-function App() {
+export default function App() {
   return (
     <>
       <Route path="/" exact component={Beggining}/>
@@ -19,4 +19,3 @@ function App() {
   );
 }
 
-export default App;

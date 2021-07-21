@@ -3,13 +3,6 @@ import { useDispatch} from "react-redux";
 import {filterAlfabet, setPage} from "../../actions";
 import styled from "styled-components";
 
-const Div = styled.div `
-  width: 33%;
-  float: left;
-    flex: grid;
-  `
-
-
 export default function FilterAlphabetical() {
   const dispatch = useDispatch()
   const [order, setOrder] = useState({order: ""});
@@ -40,12 +33,12 @@ export default function FilterAlphabetical() {
     <>
       <form onSubmit={handleSubmit}>   
         <Div>
-            <select onChange={handleChange} id="filter">
-                <option defaultValue="">ALPHABETICAL/STRENGTH:</option>
-                <option value="A-Z">A-Z</option>
-                <option value="Z-A">Z-A</option>
-                <option value="STRENGTH">STRENGTH</option>
-            </select>
+            <Select onChange={handleChange} id="filter">
+                <Option defaultValue="">ALPHABETICAL/STRENGTH:</Option>
+                <Option value="A-Z">A-Z</Option>
+                <Option value="Z-A">Z-A</Option>
+                <Option value="STRENGTH">STRENGTH</Option>
+            </Select>
             <button onClick={handleOnClick} className="c">↓ ↑</button>
             <button type="submit" className="b">OK</button>
         </Div>
@@ -53,3 +46,37 @@ export default function FilterAlphabetical() {
     </>
   );
 }
+
+const Div = styled.div `
+  width: 33%;
+  float: left;
+    flex: grid;
+  `
+  const Select = styled.select `
+  margin: 0 auto;
+  color: black;
+  font-family: Roboto;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-aling: center;
+  width: 200px;
+  height: 25px;
+  cursor: pointer;
+  &:hover{
+    background-color: transparent;
+    color: white;
+  }
+  `
+  const Option = styled.option`
+  background-color: white;
+  color: gray;
+  width: 310px;
+  padding: 10px 15px;
+  height: 20px;
+  cursor: pointer;
+  &:hover{
+    padding-left: 25px;
+    width: 270px;
+    color: #EC6F66;
+  }
+  `

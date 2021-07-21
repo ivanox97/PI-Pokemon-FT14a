@@ -18,7 +18,7 @@ export default function reducer(state = initialState, { type, payload }) {
       ...state,
       pokemon: payload
     };
-    //CHECKEAR ACA CON POKEMON EN SINGULAR
+
     case GET_BY_NAME: return {
       ...state,
       pokemons: payload
