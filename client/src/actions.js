@@ -230,14 +230,6 @@ export function filterAscendancy(pokemons, ascendancy) {
   }
 }
 
-
-export function noCreate(){
-  return async (dispatch) => {
-    return dispatch({
-      type: CREATE_POKEMON,
-      payload: []
-  })}
-}
 export function setPage(n){
  return async (dispatch) => {
    return dispatch({

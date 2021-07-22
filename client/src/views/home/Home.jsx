@@ -32,12 +32,12 @@ export default function Home() {
         {page > 0 && pokemons !== undefined? <Button onClick={() => handlePage(-1)} type="button">Prev</Button> : 
         <Button onClick={() => handlePage(-1)} type="button" disabled>Prev</Button>}
 
-        {pokemons && page * 12 + 10 < (pokemons.indexOf(pokemons[pokemons.length-1]))? 
+        {pokemons !== undefined && pokemons.length > 0 && page * 12 + 10 < (pokemons.indexOf(pokemons[pokemons.length-1]))? 
         <Button onClick={() => handlePage(1)} type="button">Next</Button> : 
         <Button onClick={() => handlePage(1)} type="button" disabled>Next</Button>}
       </Pager>
       <Div>
-        {pokemons? pokemons.slice(page*12, page*12 + 12)
+        {pokemons !== undefined && pokemons.length > 0 ? pokemons.slice(page*12, page*12 + 12)
         .map(pokemon => {return <Pokemon key={pokemon.id} pokeName={pokemon.name} 
         pokeId={pokemon.id} pokeImage={pokemon.image} types={pokemon.types} 
         color={typeof pokemon.types[0] === 'object'? pokemon.types[0].name : pokemon.types[0]}/>})

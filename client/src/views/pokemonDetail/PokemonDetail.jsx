@@ -30,10 +30,20 @@ export default function PokemonDetail() {
             <MiddleContainer>
               <InfoContainer>
                 <TypeContainer>
-                  <Type>{pokemon.map(p => {
-                      let separated = p.types;
-                      let joined = separated.join('/');
-                      return joined;
+                  <Type>{pokemon.map(p => {if(typeof p.types === 'object'){
+                    let name1 = p.types[0].name;
+                    if(typeof p.types[1] !== 'undefined'){
+                      let name2 = " / " + p.types[1].name;
+                      let names = name1.concat(name2);
+                      return names;
+                    }
+                    return name1;                   
+                  }else{
+
+                    let separated = p.types;
+                    let joined = separated.join('/');
+                    return joined;
+                  }
                     })}
                   </Type>
                 </TypeContainer>
