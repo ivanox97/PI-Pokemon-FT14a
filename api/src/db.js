@@ -2,15 +2,36 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+// const {
+//   DB_USER, DB_PASSWORD, DB_HOST,
+// } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  define: {
-    timestamps: false
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+//   define: {
+//     timestamps: false
+//   },
+// });
+
+const {
+  DB_USER, DB_PASSWORD, DB_HOST,PORT,
+} = process.env;
+var pg = require('pg');
+pg.defaults.ssl = true;
+
+const sequelize = new Sequelize({
+  database: "df39eak8uhal23",
+  username: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: PORT,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true, // This will help you. But you will see nwe error
+      rejectUnauthorized: false // This line will fix new error
+    }
   },
 });
 
