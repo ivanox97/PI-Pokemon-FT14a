@@ -30,7 +30,7 @@ export default function PokemonDetail() {
             <MiddleContainer>
               <InfoContainer>
                 <TypeContainer>
-                  <Type>{pokemon.map(p => {if(typeof p.types === 'object'){
+                  <Type>{pokemon.map(p => {if(typeof p.types[0] === 'object'){
                     let name1 = p.types[0].name;
                     if(typeof p.types[1] !== 'undefined'){
                       let name2 = " / " + p.types[1].name;

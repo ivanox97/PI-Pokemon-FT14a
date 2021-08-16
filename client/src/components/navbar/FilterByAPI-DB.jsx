@@ -18,8 +18,8 @@ export default function FilterByApiOrDb() {
   }
 
   useEffect(()=> {
-    dispatch(filterByApiOrDb(apiOrDb));
     dispatch(setPage(0));
+    dispatch(filterByApiOrDb(apiOrDb));
     ResetSelect();
   },[dispatch, apiOrDb])
 

@@ -82,6 +82,7 @@ margin: 0;
 float: right;
 font-family: Roboto;
 font-weight: bold;
+-webkit-text-stroke: 1px black;
 `;
 
 export const H3Container = styled.div `
@@ -134,6 +135,7 @@ font-family: Roboto;
 font-weight: bold;
 font-size: 30px;
 text-transform: capitalize;
+-webkit-text-stroke: 1px black;
 `;
 
 export const ButtonContainer = styled.div `

@@ -109,8 +109,8 @@ export function filterByType(type) {
 export function filterByApiOrDb(choice){
   return async (dispatch) => {
     try {
-      const pokemons = await axios.get('http://localhost:3001/pokemons');
       if(choice === "API"){
+        const pokemons = await axios.get('http://localhost:3001/pokemons');
         const pokemonsApi = [];
         pokemons.data.forEach(poke => {if(poke.id.toString().length <= 2){
           pokemonsApi.push(poke);
@@ -119,11 +119,10 @@ export function filterByApiOrDb(choice){
           type: FILTER_API_DB,
           payload: pokemonsApi
         })
-      } else {
-        const pokemonsDb = [];
-        pokemons.data.forEach(poke => {if(poke.id.toString().length > 2){
-          pokemonsDb.push(poke);
-        }})
+      } 
+      else if (choice === "DB"){
+        const pokemons = await axios.get('http://localhost:3001/pokemons');
+        const pokemonsDb = pokemons.data.filter(poke => poke.id.toString().length > 2)
         return dispatch({
           type: FILTER_API_DB,
           payload: pokemonsDb

@@ -26,8 +26,7 @@ export default function FilterAlphabetical() {
     e.preventDefault();
     dispatch(setPage(0));
     dispatch(filterAlfabet(order,ascendancy));
-    ResetSelect();
-    
+    ResetSelect();  
   }
 
   return (
@@ -40,8 +39,8 @@ export default function FilterAlphabetical() {
                 <Option value="Z-A">Z-A</Option>
                 <Option value="STRENGTH">STRENGTH</Option>
             </Select>
-            <button onClick={handleOnClick} className="c">↓ ↑</button>
-            <button type="submit" className="b">OK</button>
+            <button onClick={handleOnClick}>↓ ↑</button>
+            <button type="submit">OK</button>
         </Div>
       </form>
     </>
