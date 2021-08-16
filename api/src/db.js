@@ -22,10 +22,10 @@ pg.defaults.ssl = true;
 
 const sequelize = new Sequelize({
   database: "df39eak8uhal23",
-  username: DB_USER,
-  password: DB_PASSWORD,
-  host: DB_HOST,
-  port: PORT,
+  username: 'fgmrmufstnzexx',
+  password: '53e3225948a7d3cf34d75717833539c4642b769fb687450285247e7eee89ee63',
+  host: 'ec2-54-236-137-173.compute-1.amazonaws.com',
+  port: 5432,
   dialect: "postgres",
   dialectOptions: {
     ssl: {

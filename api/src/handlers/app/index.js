@@ -4,18 +4,22 @@ const {API, API_TYPE} = require('../../constants')
 
 async function getTypes(){
     const responser = await axios.get(API_TYPE)
-    const results = responser.data.results;
+    const typesbd = await Promise.all(responser.data.results.map(t=>{
+        return Type.findOrCreate({where:{name:t.name}})
+    }))
+    
+    // const results = responser.data.results;
         
-    results.map( types => {
-        Type.findOrCreate(
-            { where:{
-                name: types.name
-                }, 
-            defaults: { 
-                name: types.name
-                }
-            })
-    });
+    // results.map( types => {
+    //     Type.findOrCreate(
+    //         { where:{
+    //             name: types.name
+    //             }, 
+    //         defaults: { 
+    //             name: types.name
+    //             }
+    //         })
+    // });
 }
 
 async function getDBPokemonsFullInfo(){

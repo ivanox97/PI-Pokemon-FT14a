@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { v4: uuidv4 } = require('uuid');
 const {Pokemon} = require("../db.js");
-const {getDBPokemonsFullInfo, getAllPokemons, getApiPokemonsFullInfo} = require("../handlers/index");
+const {getDBPokemonsFullInfo, getAllPokemons, getApiPokemonsFullInfo} = require("../handlers/app/index");
 
 router.get('/', async (req, res, next) => {
     const {name} = req.query;
