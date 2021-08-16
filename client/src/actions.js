@@ -14,7 +14,7 @@ export const SET_PAGE = "SET_PAGE";
 export function getPokemons() {
   return async (dispatch) => {
     try{
-      const response = await axios.get('http://localhost:3001/pokemons');
+      const response = await axios.get('https://anda-app.herokuapp.com/pokemons');
       const data = response.data;
       return dispatch({type: GET_POKEMONS, payload: data})
     }
@@ -26,7 +26,7 @@ export function getPokemons() {
 export function getPokemon(idPokemon) {
   return async (dispatch) => {
     try{
-      const pokemon = await axios.get(`http://localhost:3001/pokemons/${idPokemon}`);
+      const pokemon = await axios.get(`https://anda-app.herokuapp.com/pokemons/${idPokemon}`);
       const data = pokemon.data;
       return dispatch({type: GET_POKEMON, payload: data})
     }
@@ -45,7 +45,7 @@ export function getPokemon(idPokemon) {
 export function getByName(name) {
   return async (dispatch)=>{
       try {
-          const pokemons = await axios.get(`http://localhost:3001/pokemons`);
+          const pokemons = await axios.get(`https://anda-app.herokuapp.com/pokemons`);
           const data = pokemons.data;
           const searchByName = data.filter(p => p.name.includes(name.toLowerCase()))
           if(searchByName.length > 0){
@@ -66,7 +66,7 @@ export function getByName(name) {
 export function createPokemon(values) {
   return async (dispatch) => {
     try{
-      const create = await axios.post('http://localhost:3001/pokemons', values)
+      const create = await axios.post('https://anda-app.herokuapp.com/pokemons', values)
       const createdData = create.data;
       return dispatch({
         type: CREATE_POKEMON, 
@@ -87,7 +87,7 @@ export function filterByType(type) {
     try{
     if(type.length>0){
       const pokemonsFiltered = [];
-      const pokemons = await axios.get('http://localhost:3001/pokemons');
+      const pokemons = await axios.get('https://anda-app.herokuapp.com/pokemons');
       const pokeData = await pokemons.data;
       pokeData.forEach(p => p.types.forEach(t =>
         {if(t === type || t.name === type){
@@ -110,7 +110,7 @@ export function filterByApiOrDb(choice){
   return async (dispatch) => {
     try {
       if(choice === "API"){
-        const pokemons = await axios.get('http://localhost:3001/pokemons');
+        const pokemons = await axios.get('https://anda-app.herokuapp.com/pokemons');
         const pokemonsApi = [];
         pokemons.data.forEach(poke => {if(poke.id.toString().length <= 2){
           pokemonsApi.push(poke);
@@ -121,7 +121,7 @@ export function filterByApiOrDb(choice){
         })
       } 
       else if (choice === "DB"){
-        const pokemons = await axios.get('http://localhost:3001/pokemons');
+        const pokemons = await axios.get('https://anda-app.herokuapp.com/pokemons');
         const pokemonsDb = pokemons.data.filter(poke => poke.id.toString().length > 2)
         return dispatch({
           type: FILTER_API_DB,
@@ -140,7 +140,7 @@ export function filterByApiOrDb(choice){
 export function filterAlfabet(order,asc){
   return async (dispatch) => {
     try{
-        const pokemons = await axios.get('http://localhost:3001/pokemons');
+        const pokemons = await axios.get('https://anda-app.herokuapp.com/pokemons');
         const pokemonsOrder = pokemons.data.slice().sort(function compareNames(a,b){
           if(a.name < b.name){
             return -1;
